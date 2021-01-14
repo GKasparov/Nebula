@@ -8,7 +8,12 @@
  Permissions for the ranks can be set in the permissions.yml (before going into the permisisons.yml make sure todo /ranks perm add <rank> <node>)
  Users for setting user permissions/inheritance it is all currently saved in users.yml (same deal as above /users perm add <player> <node>)
  
+## API
+ todo
+
 ## Plans for the final build
  Fully switch to saving everything to a database, making ranks & permissions server based if set.
+ 
+ 
  
 

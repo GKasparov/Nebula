@@ -1,0 +1,6 @@
+MYSQL:
+  HOST: "localhost"
+  PORT: "3306"
+  USER: "baz"
+  PASSWORD: "root"
+  DATABASE: "nebula"

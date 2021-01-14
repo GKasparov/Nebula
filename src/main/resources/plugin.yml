@@ -1,0 +1,14 @@
+name: Nebula
+version: ${project.version}
+main: me.ethan.nebula.Nebula
+api-version: 1.16
+authors: [ brickoh ]
+description: Permission plugin
+website: GlacialRealms.net
+commands:
+  rank:
+  profile:
+  staffhistory:
+  user:
+  setrank:
+  grant:

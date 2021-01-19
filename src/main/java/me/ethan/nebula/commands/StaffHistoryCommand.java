@@ -2,6 +2,7 @@ package me.ethan.nebula.commands;
 
 import me.ethan.nebula.Nebula;
 import me.ethan.nebula.utils.StringUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,10 +25,12 @@ public class StaffHistoryCommand implements CommandExecutor {
                     player.sendMessage(StringUtils.format("&b&m------------------------------"));
 
                 }
+            } else {
+                player.sendMessage(ChatColor.RED+ "Insufficient Permissions");
             }
+        } else {
+            System.out.println("This command can only be used in-game");
         }
-
-
         return false;
     }
 }

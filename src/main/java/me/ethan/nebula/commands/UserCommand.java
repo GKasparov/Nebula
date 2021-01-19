@@ -37,6 +37,8 @@ public class UserCommand implements CommandExecutor {
                             return true;
                         }
                     }
+                } else {
+                    player.sendMessage("Incorrect Syntax. Please use /user <inherit/perm> add {PlayerName} {permission}");
                 }
             }
             if (args.length == 4) {
@@ -49,6 +51,8 @@ public class UserCommand implements CommandExecutor {
                         return true;
                     }
                 }
+            } else {
+                player.sendMessage("Incorrect Syntax. Please use /user <inherit/perm> add {PlayerName} {permission}");
             }
         }
         return false;

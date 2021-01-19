@@ -3,6 +3,7 @@ package me.ethan.nebula.commands;
 import me.ethan.nebula.Nebula;
 import me.ethan.nebula.utils.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -68,55 +69,61 @@ public class RankCommand implements CommandExecutor {
                         }
                     }
                 }
-            }
-            if (args.length == 2) {
-                if (args[0].equalsIgnoreCase("delete")) {
-                    String rank = args[1];
-                    if (Nebula.getInstance().getRankManager().rankCheck(rank)) {
-                        player.sendMessage(StringUtils.Prefix() + "You have successfully deleted &d" + rank);
-                        Nebula.getInstance().getRankManager().deleteRank(rank);
-                    } else if (!Nebula.getInstance().getRankManager().rankCheck(rank))
-                        player.sendMessage(StringUtils.Prefix() + "Unable to delete &d" + rank + " as it does not exist.");
-                    return true;
-                }
-            }
-            if (args.length == 1) {
-                if (args[0].equalsIgnoreCase("list")) {
-                    player.sendMessage(StringUtils.format("&b&m------------------------------"));
-                    player.sendMessage(StringUtils.format(StringUtils.Prefix() + "Listing all ranks in the database."));
-                    player.sendMessage("");
-                    Nebula.getInstance().getRankManager().listRanks().forEach(rank -> player.sendMessage(StringUtils.format(rank)));
-                    player.sendMessage(StringUtils.format("&b&m------------------------------"));
-                    return true;
-                }
-            }
-            if (args.length == 4) {
-                if (args[0].equalsIgnoreCase("perm")) {
-                    if (args[1].equalsIgnoreCase("add")) {
-                        String rank = args[2];
-                        String perm = args[3];
+
+                if (args.length == 2) {
+                    if (args[0].equalsIgnoreCase("delete")) {
+                        String rank = args[1];
                         if (Nebula.getInstance().getRankManager().rankCheck(rank)) {
-                            player.sendMessage(StringUtils.format("Added " + perm + " to " + rank));
-                            Nebula.getInstance().getPermissionManager().addPerm(rank, perm);
+                            player.sendMessage(StringUtils.Prefix() + "You have successfully deleted &d" + rank);
+                            Nebula.getInstance().getRankManager().deleteRank(rank);
                         } else if (!Nebula.getInstance().getRankManager().rankCheck(rank))
-                            player.sendMessage(StringUtils.format("Could not add " + perm + " to " + rank));
+                            player.sendMessage(StringUtils.Prefix() + "Unable to delete &d" + rank + " as it does not exist.");
                         return true;
                     }
                 }
-            }
-            if (args.length == 4) {
-                if (args[0].equalsIgnoreCase("inherit")) {
-                    if (args[1].equalsIgnoreCase("add")) {
-                        String rank = args[2];
-                        String inherit = args[3];
-                        if (Nebula.getInstance().getRankManager().rankCheck(rank)) {
-                            player.sendMessage(StringUtils.format("Added " + inherit + " to " + rank));
-                            Nebula.getInstance().getInheritanceManager().addInherit(rank, inherit);
-                        } else if (!Nebula.getInstance().getRankManager().rankCheck(rank))
-                            player.sendMessage(StringUtils.format("Could not add " + inherit + " to " + rank));
+                if (args.length == 1) {
+                    if (args[0].equalsIgnoreCase("list")) {
+                        player.sendMessage(StringUtils.format("&b&m------------------------------"));
+                        player.sendMessage(StringUtils.format(StringUtils.Prefix() + "Listing all ranks in the database."));
+                        player.sendMessage("");
+                        Nebula.getInstance().getRankManager().listRanks().forEach(rank -> player.sendMessage(StringUtils.format(rank)));
+                        player.sendMessage(StringUtils.format("&b&m------------------------------"));
                         return true;
                     }
                 }
+                if (args.length == 4) {
+                    if (args[0].equalsIgnoreCase("perm")) {
+                        if (args[1].equalsIgnoreCase("add")) {
+                            String rank = args[2];
+                            String perm = args[3];
+                            if (Nebula.getInstance().getRankManager().rankCheck(rank)) {
+                                player.sendMessage(StringUtils.format("Added " + perm + " to " + rank));
+                                Nebula.getInstance().getPermissionManager().addPerm(rank, perm);
+                            } else if (!Nebula.getInstance().getRankManager().rankCheck(rank))
+                                player.sendMessage(StringUtils.format("Could not add " + perm + " to " + rank));
+                            return true;
+                        }
+                    }
+                }
+                if (args.length == 4) {
+                    if (args[0].equalsIgnoreCase("inherit")) {
+                        if (args[1].equalsIgnoreCase("add")) {
+                            String rank = args[2];
+                            String inherit = args[3];
+                            if (Nebula.getInstance().getRankManager().rankCheck(rank)) {
+                                player.sendMessage(StringUtils.format("Added " + inherit + " to " + rank));
+                                Nebula.getInstance().getInheritanceManager().addInherit(rank, inherit);
+                            } else if (!Nebula.getInstance().getRankManager().rankCheck(rank))
+                                player.sendMessage(StringUtils.format("Could not add " + inherit + " to " + rank));
+                            return true;
+                        }
+                    }
+                }
+                if (args.length > 4) {
+                    player.sendMessage("Incorrect Syntax. Please type /rank for more info");
+                }
+            } else {
+                player.sendMessage(ChatColor.RED + "Insufficient Permissions");
             }
         }
 

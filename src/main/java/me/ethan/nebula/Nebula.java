@@ -29,7 +29,6 @@ public final class Nebula extends JavaPlugin {
     private UserManager userManager;
 
 
-    private GrantGUI grantGUI;
     private MySQL mySQL;
     private SQLSetter sql;
 
@@ -48,7 +47,7 @@ public final class Nebula extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage(StringUtils.format(StringUtils.Prefix() + "Database not found"));
         }
         if (mySQL.isConnected()) {
-            Bukkit.getConsoleSender().sendMessage(StringUtils.format(StringUtils.Prefix() + "Database connected, Created the following\nplayerdata\nranks\nstaffdata"));
+            Bukkit.getConsoleSender().sendMessage(StringUtils.format(StringUtils.Prefix() + "Database connected."));
             sql.createPlayerData();
             sql.createRankData();
             sql.createStaffData();
@@ -79,7 +78,7 @@ public final class Nebula extends JavaPlugin {
         getCommand("staffhistory").setExecutor(new StaffHistoryCommand());
         getCommand("user").setExecutor(new UserCommand());
         getCommand("setrank").setExecutor(new SetRankCommand());
-        getCommand("grant").setExecutor(new GrantCommand());
+        getCommand("promote").setExecutor(new PromoteCommand());
 
     }
 
@@ -95,7 +94,6 @@ public final class Nebula extends JavaPlugin {
         permissionManager = new PermissionManager();
         inheritanceManager = new InheritanceManager();
         userManager = new UserManager();
-        grantGUI = new GrantGUI();
     }
 }
 

@@ -56,6 +56,7 @@ public class RankManager {
     }
 
 
+
     public String getRank(Player player) {
         try {
             PreparedStatement ps = Nebula.getInstance().getMySQL().getConnection()

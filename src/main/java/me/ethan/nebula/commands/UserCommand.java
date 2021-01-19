@@ -24,7 +24,6 @@ public class UserCommand implements CommandExecutor {
                     rankmsg.add(StringUtils.Prefix() + "Showing rank command usage;");
                     rankmsg.add("&d/user inherit add <player> <rank> » &fAdds inherit to user.");
                     rankmsg.add("&d/user perm add <player> <perm> » &fAdds inherit to user.");
-                    rankmsg.add("&d/rank list <name> » &fDeletes a rank.");
                     rankmsg.add("&b&m------------------------------");
                     rankmsg.forEach(rank -> player.sendMessage(StringUtils.format(rank)));
                 }

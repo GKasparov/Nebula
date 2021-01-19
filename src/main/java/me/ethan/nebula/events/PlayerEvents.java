@@ -1,7 +1,6 @@
 package me.ethan.nebula.events;
 
 import me.ethan.nebula.Nebula;
-import me.ethan.nebula.utils.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +16,6 @@ public class PlayerEvents implements Listener {
         Nebula.getInstance().getSql().createPlayer(player.getUniqueId(), player);
         if (Nebula.getInstance().getSql().exists(player.getUniqueId())) {
             try {
-                player.sendMessage(StringUtils.format(StringUtils.Prefix() + "Your Rank data has loaded."));
 
                 Nebula.getInstance().getPermissionManager().addPermissions(player);
                 Nebula.getInstance().getInheritanceManager().addInheritance(player);
@@ -32,7 +30,6 @@ public class PlayerEvents implements Listener {
     }
     @EventHandler
     public void PlayerQuit(PlayerQuitEvent e) {
-        Player player = e.getPlayer();
         Nebula.getInstance().getUserManager().clear();
         Nebula.getInstance().getPermissionManager().clear();
 

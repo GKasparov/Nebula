@@ -25,7 +25,6 @@ public class PermissionManager {
         PermissionAttachment attachment = perms.get(uuid);
         for (String groups : Nebula.getInstance().getPermissionsYML().getConfigurationSection("Groups").getKeys(false)) {
             for (String permissions : Nebula.getInstance().getPermissionsYML().getStringList("Groups." + groups + ".permissions")) {
-                System.out.println(permissions);
                 attachment.setPermission(permissions, true);
             }
         }
@@ -36,7 +35,6 @@ public class PermissionManager {
         permissions.add(perm);
         Nebula.getInstance().getPermissionsYML().set("Groups." + rank + ".permissions", permissions);
         Nebula.getInstance().getPermissionsYML().save();
-        System.out.print("Added Permissions.");
     }
     public List<String> getPerms(String rank) {
         if (!Nebula.getInstance().getPermissionsYML().contains("Groups." + rank + ".permissions"))

@@ -15,8 +15,9 @@ public class InheritanceManager {
     }
     public void setInheritance(UUID uuid) {
         for (String groups : Nebula.getInstance().getPermissionsYML().getConfigurationSection("Groups").getKeys(false)) {
-            for (String inheritance : Nebula.getInstance().getPermissionsYML().getStringList("Groups." + groups + ".inheritance"))
-                System.out.println(inheritance);
+            for (String inheritance : Nebula.getInstance().getPermissionsYML().getStringList("Groups." + groups + ".inheritance")) {
+
+            }
         }
     }
 
@@ -26,7 +27,6 @@ public class InheritanceManager {
         inherits.add(inherit);
         Nebula.getInstance().getPermissionsYML().set("Groups." + rank + ".inheritance", inherits);
         Nebula.getInstance().getPermissionsYML().save();
-        System.out.print("Added Inheritance.");
     }
 
     public List<String> getInherit(String rank) {

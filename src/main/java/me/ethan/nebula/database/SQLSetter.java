@@ -15,7 +15,7 @@ public class SQLSetter {
         PreparedStatement ps;
         try {
             ps = Nebula.getInstance().getMySQL().getConnection()
-                    .prepareStatement("CREATE TABLE IF NOT EXISTS playerdata " + "(NAME VARCHAR(100) NOT NULL, UUID VARCHAR(100) NOT NULL, RANK TEXT NOT NULL, ISSTAFF BOOLEAN, PRIMARY KEY(NAME))");
+                    .prepareStatement("CREATE TABLE IF NOT EXISTS playerdata " + "(NAME VARCHAR(100) NOT NULL, UUID VARCHAR(100) NOT NULL, RANK TEXT NOT NULL, PRIMARY KEY(NAME))");
             ps.executeUpdate();
 
 
@@ -27,7 +27,7 @@ public class SQLSetter {
     public void createRankData() {
         PreparedStatement ps;
         try {
-            ps = Nebula.getInstance().getMySQL().getConnection()
+                ps = Nebula.getInstance().getMySQL().getConnection()
                     .prepareStatement("CREATE TABLE IF NOT EXISTS ranks " + "(NAME VARCHAR(100) NOT NULL, PREFIX VARCHAR(100), PRIMARY KEY(NAME))");
             ps.executeUpdate();
 
@@ -57,15 +57,13 @@ public class SQLSetter {
             statement.setString(1, uuid.toString());
             ResultSet results = statement.executeQuery();
             results.next();
-            System.out.print(1);
 
             if (exists(uuid) != true) {
                 PreparedStatement insert = Nebula.getInstance().getMySQL().getConnection()
-                        .prepareStatement("INSERT INTO playerdata (UUID,NAME,RANK,ISSTAFF) VALUES (?,?,?,?)");
+                        .prepareStatement("INSERT INTO playerdata (UUID,NAME,RANK) VALUES (?,?,?)");
                 insert.setString(1, uuid.toString());
                 insert.setString(2, player.getName());
                 insert.setString(3, "Member");
-                insert.setBoolean(4, false);
 
 
                 insert.executeUpdate();

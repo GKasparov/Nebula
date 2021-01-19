@@ -20,8 +20,9 @@ public class UserManager {
 
     public void setInheritance(UUID uuid) {
         for (String players : Nebula.getInstance().getUsersYML().getConfigurationSection("Players").getKeys(false)) {
-            for (String inheritance : Nebula.getInstance().getUsersYML().getStringList("Players." + players + ".inheritance"))
-                System.out.println(inheritance);
+            for (String inheritance : Nebula.getInstance().getUsersYML().getStringList("Players." + players + ".inheritance")) {
+
+            }
         }
     }
 
@@ -31,7 +32,6 @@ public class UserManager {
         inherits.add(inherit);
         Nebula.getInstance().getUsersYML().set("Players." + player.getUniqueId() + ".inheritance", inherits);
         Nebula.getInstance().getUsersYML().save();
-        System.out.print("Added Inheritance.");
     }
     public List<String> getInherit(Player player) {
         if (!Nebula.getInstance().getUsersYML().contains("Players." + player.getUniqueId() + ".inheritance"))
@@ -52,7 +52,6 @@ public class UserManager {
     public void setPermissions(Player player) {
         PermissionAttachment attachment = perms.get(player.getUniqueId());
             for (String permissions : Nebula.getInstance().getUsersYML().getStringList("Players." + player.getUniqueId() + ".permissions")) {
-                System.out.println(permissions);
                 attachment.setPermission(permissions, true);
             }
         }
@@ -62,7 +61,6 @@ public class UserManager {
         permissions.add(perm);
         Nebula.getInstance().getUsersYML().set("Players." + player.getUniqueId() + ".permissions", permissions);
         Nebula.getInstance().getUsersYML().save();
-        System.out.print("Added Permissions.");
     }
     public List<String> getPerms(Player player) {
         if (!Nebula.getInstance().getUsersYML().contains("Players." + player.getUniqueId() + ".permissions"))

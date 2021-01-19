@@ -8,9 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RankCommand implements CommandExecutor {
@@ -39,6 +37,8 @@ public class RankCommand implements CommandExecutor {
                         String prefix = args[2];
                         if (!Nebula.getInstance().getRankManager().rankCheck(rank)) {
                             player.sendMessage(StringUtils.format(StringUtils.Prefix() + "You have successfully created the rank &d" + rank + "&f with the prefix &r" + prefix + "&f."));
+                            Nebula.getInstance().getPermissionManager().addPerm(rank, "this.is.a.perm");
+                            Nebula.getInstance().getInheritanceManager().addInherit(rank, "Default");
                             Nebula.getInstance().getRankManager().createRank(rank, prefix);
                         } else if (Nebula.getInstance().getRankManager().rankCheck(rank)) {
                             player.sendMessage(StringUtils.format(StringUtils.Prefix() + "Seems like &d" + rank + " &falready exists. try setting the rank to a player or checking the database."));
@@ -53,6 +53,7 @@ public class RankCommand implements CommandExecutor {
                         String rank = args[2];
                         if (target.hasPermission("nebula.utils.staff")) {
                             target.sendMessage(StringUtils.format(StringUtils.Prefix() + " As you are staff the rank has been added to your inheritance."));
+                            Nebula.getInstance().getUserManager().addInherit(player, rank);
                         } else {
                             if (!target.hasPermission("nebula.utils.staff")) {
                                 if (Nebula.getInstance().getRankManager().rankCheck(rank)) {
@@ -86,23 +87,6 @@ public class RankCommand implements CommandExecutor {
                     player.sendMessage("");
                     Nebula.getInstance().getRankManager().listRanks().forEach(rank -> player.sendMessage(StringUtils.format(rank)));
                     player.sendMessage(StringUtils.format("&b&m------------------------------"));
-                    return true;
-                }
-            }
-            if (args.length == 3) {
-                if (args[0].equalsIgnoreCase("promote")) {
-                    Player target = Bukkit.getPlayer(args[1]);
-                    String rank = args[2];
-                    Date date = new Date();
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-                    String promotedate = sdf.format(date);
-                    if (Nebula.getInstance().getRankManager().rankCheck(rank)) {
-                        Nebula.getInstance().getRankManager().setRank(player, rank);
-                        Nebula.getInstance().getRankManager().updateRank(player, rank);
-                        Nebula.getInstance().getStaffManager().promote(player, rank, promotedate);
-                        player.sendMessage(StringUtils.format(StringUtils.Prefix() + "Added &d" + rank + " &fto &d" + target.getName()));
-                    } else if (!Nebula.getInstance().getRankManager().rankCheck(rank))
-                        player.sendMessage(StringUtils.format(StringUtils.Prefix() + "Could not find &d" + rank + " &fhas it been created?"));
                     return true;
                 }
             }

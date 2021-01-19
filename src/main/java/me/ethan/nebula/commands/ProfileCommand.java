@@ -2,6 +2,7 @@ package me.ethan.nebula.commands;
 
 import me.ethan.nebula.Nebula;
 import me.ethan.nebula.utils.StringUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -36,9 +37,9 @@ public class ProfileCommand implements CommandExecutor {
                 }
 
 
+            } else {
+                player.sendMessage(ChatColor.RED + "Insufficient Permissions");
             }
-
-
         }
         return false;
     }

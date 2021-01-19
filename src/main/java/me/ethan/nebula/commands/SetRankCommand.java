@@ -23,8 +23,7 @@ public class SetRankCommand implements CommandExecutor {
                 msg.add("setrank force <player> <rank>");
                 msg.forEach(message -> console.sendMessage(StringUtils.format(message)));
 
-            }
-            if (args.length == 2) {
+            } else if (args.length == 2) {
                 Player target = Bukkit.getPlayer(args[0]);
                 String rank = args[1];
                 if (target.hasPermission("nebula.utils.staff")) {
@@ -43,8 +42,7 @@ public class SetRankCommand implements CommandExecutor {
                         return true;
                     }
                 }
-            }
-            if (args.length == 3) {
+            } else if (args.length == 3) {
                 if (args[0].equalsIgnoreCase("force")) {
                     Player target = Bukkit.getPlayer(args[1]);
                     String rank = args[2];
@@ -59,6 +57,8 @@ public class SetRankCommand implements CommandExecutor {
                     }
                     return true;
                 }
+            } else {
+                System.out.println("Incorrect Syntax. Please use /setrank <PlayerName/force> <Rank/PlayerName> <Rank> Or /setrank for more details");
             }
         }
         return false;

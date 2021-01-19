@@ -3,6 +3,7 @@ package me.ethan.nebula.commands;
 import me.ethan.nebula.Nebula;
 import me.ethan.nebula.utils.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -46,6 +47,8 @@ public class PromoteCommand implements CommandExecutor {
                         player.sendMessage(StringUtils.format(StringUtils.Prefix() + "Could not find &d" + rank + " &fhas it been created?"));
                     return true;
                 }
+            } else {
+                player.sendMessage(ChatColor.RED + "Insufficient Permissions");
             }
         }
         return false;
